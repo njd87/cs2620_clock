@@ -43,7 +43,7 @@ We then have a brief program that extracts clock information from each of the lo
 and analyzes the clock information. We report below, for each run, the (randomly generated)
 clock rates for each machine (higher numbers indicate more ticks per real world second),
 along with the final logical clock time and the average change in the logical clock value
-between logged events. 
+between logged events (which we call "average step size"). 
 
 Run 1:
 Clock rates: [3, 4, 1]
@@ -71,5 +71,34 @@ Final logical clock time: [351, 334, 348]
 Average step sizes: [1.0, 2.82, 1.48]
 
 We notice two primary patterns:
-(1) Faster clock rates correspond to larger final logical clock values. This makes sense
-because faster clock rates correspond to more actions taken
+(1) Virtual machines with a slower clock rate have lower final logical clock times. 
+This can be attributed to two primary effects. The first (and less significant) 
+effect is due to the increased rate of actions: virtual machines with faster clock 
+rates simply execute more actions, so it is possible that a few more actions are executed by 
+one machine between another machine's last action and the end of the one minute interval. 
+However, this effect should not be too pronounced because the number of such actions is highly 
+limited because the interval between actions is fairly short.
+
+This limited effect doesn't explain some of the extremely large gaps: for instance, in run 3, 
+the final logical clock value of machine 1 is smaller than that of machine 2 by almost 100. 
+However, when we analyze the contents of the log file, we see that this difference is in large 
+part due to processing speed. Since only one incoming message (which is placed in the queue) 
+can be processed during each tick and the the logical clock is only updated as incoming 
+messages are processed (since other actions don't occur when there are messages in the inbound
+queue), machine 1 effectively falls "behind" on updating its logical clock. In short, the 
+number of inbound messages overwhelms the processing speed of this slower machine, which leads
+to the observed gap in logical clock times.
+
+However, besides the issue of slowly processing messages (if messages are important, we would
+not like them to be in the inbound queue for so long), this gap isn't a logical issue, since
+no other internal actions or outbound messages are sent until all inbound messages are
+processed (at which point the logical clocks would be more synchronized).
+
+(2) Virtual machines with a slower clock rate have higher average step sizes. 
+This can be attributed to the fact that virtual machines wih higher clock rates simply do
+things more quickly. Between ticks of a slower virtual machine, a faster virtual machine may
+perform several internal actions and may send/receive messages with a similarly faster
+virtual machine. Therefore, while the difference in logged logical clock times between each of
+these events on the faster machine may only be one or two, the slower machine might just
+process a single message during this time span, making the gap between its last logged action
+and this one much greater.
