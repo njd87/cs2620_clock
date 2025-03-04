@@ -6,8 +6,8 @@ Starting work today on the logical clocks. Before we begin, we have an outline o
 
 1) Each vm will be an object of a VirtualMachine class that keeps track of the other clocks
     Also useful since we can set clock speed at the beginning!
-2) Listening sockets need to be run in a thread in parallel via threading and handling requests. This is a bit tough
-since we also do not have a main "server," but rather computers talking to each other over distinct sockets.
+2) Listening sockets need to be run within each vm for each socket This is a bit tough
+since we also do not have a main "server," but rather computers talking to each other over distinct sockets (maybe using one socket per listening?)
 3) When clock speed is chosen, we need to sleep for time/clock seconds for each event.
 4) From what we have decided, vector clocks are NOT mentioned. So, internal events update clock by 1 and when it receives another clock's time,
 new time is max(our_time, their_time) + 1 as described in lecture.
@@ -16,7 +16,8 @@ new time is max(our_time, their_time) + 1 as described in lecture.
 Created the class and passed all info. Issue is getting sockets to connect to each other.
 
 Ok, so it looks like we need to run all the "setup_connection" in a seperate thread to make sure
-the new connection can keep listening.
+the new connection can keep listening. These create sockets looking for connection then immediately puts the socket through to
+handling requests that listens and adds to the vm's queue.
 
 Another issue (that took way to long to fix) is that we can't create the connections before creating the other machines
 (something so obvious now, but it is what it is).
