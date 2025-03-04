@@ -15,8 +15,12 @@ new time is max(our_time, their_time) + 1 as described in lecture.
 
 Created the class and passed all info. Issue is getting sockets to connect to each other.
 
-Ok, so it looks like we need to run all the "setup_connection" in a seperate thread. Then, before running all of the machines,
-we run a separate function "connect_to_peers" that needs to be run following all initialization.
+Ok, so it looks like we need to run all the "setup_connection" in a seperate thread to make sure
+the new connection can keep listening.
+
+Another issue (that took way to long to fix) is that we can't create the connections before creating the other machines
+(something so obvious now, but it is what it is).
+Before running all of the machines, we run a separate function "connect_to_peers" that needs to be run following all initialization.
 
 UNIT TESTING:
 - Added tests for connecting sockets
@@ -29,13 +33,16 @@ Randomize number, if 1 send to first peer, if 2 send to second. If 3rd, iterate 
 If we have an internal event. just update clock by 1.
 If we RECEIVED something, use the max formula: clock = max(clock, receive_clock) + 1
 
+We decided that if something is in the queue, the machine forgoes its iternal action to properly respond.
+This was so we could better capture drift from slower clock speeds constantly trying to keep up with faster ones.
+
 UNIT TESTING:
 - VM can send message to 1 machine
 - VM can send messages to both machines
 - When received message, clock updates correctly (max function)
 - When internal message, clock updates correctly (+1)
 
-Ok, adding all log statements with eventypes and we should be done.
+Ok, adding all log statements with event types and we should be done.
 Next, we can document our results. We've also added a config file for detailing ports, host, and time to run.
 
 RESULTS: We run our scale model five times for a minute each (logs stored under log_hist directory). 
