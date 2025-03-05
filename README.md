@@ -22,3 +22,5 @@ Running will create or append to the 3 log files (if already created) the clock 
 # Changing Config
 
 If you would like to change the port, host, or time that the program runs for (defaults are listed in config, run_duration in seconds), change to your desired params in config/config.json.
+
+You may also change the maximum clock rate possible (default 6) and maximum number of events. 1-3 reserved for sending. Param requires minimum of 4, default 10.

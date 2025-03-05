@@ -6,8 +6,8 @@ Starting work today on the logical clocks. Before we begin, we have an outline o
 
 1) Each vm will be an object of a VirtualMachine class that keeps track of the other clocks
     Also useful since we can set clock speed at the beginning!
-2) Listening sockets need to be run in a thread in parallel via threading and handling requests. This is a bit tough
-since we also do not have a main "server," but rather computers talking to each other over distinct sockets.
+2) Listening sockets need to be run within each vm for each socket This is a bit tough
+since we also do not have a main "server," but rather computers talking to each other over distinct sockets (maybe using one socket per listening?)
 3) When clock speed is chosen, we need to sleep for time/clock seconds for each event.
 4) From what we have decided, vector clocks are NOT mentioned. So, internal events update clock by 1 and when it receives another clock's time,
 new time is max(our_time, their_time) + 1 as described in lecture.
@@ -15,8 +15,13 @@ new time is max(our_time, their_time) + 1 as described in lecture.
 
 Created the class and passed all info. Issue is getting sockets to connect to each other.
 
-Ok, so it looks like we need to run all the "setup_connection" in a seperate thread. Then, before running all of the machines,
-we run a separate function "connect_to_peers" that needs to be run following all initialization.
+Ok, so it looks like we need to run all the "setup_connection" in a seperate thread to make sure
+the new connection can keep listening. These create sockets looking for connection then immediately puts the socket through to
+handling requests that listens and adds to the vm's queue.
+
+Another issue (that took way to long to fix) is that we can't create the connections before creating the other machines
+(something so obvious now, but it is what it is).
+Before running all of the machines, we run a separate function "connect_to_peers" that needs to be run following all initialization.
 
 UNIT TESTING:
 - Added tests for connecting sockets
@@ -29,13 +34,16 @@ Randomize number, if 1 send to first peer, if 2 send to second. If 3rd, iterate 
 If we have an internal event. just update clock by 1.
 If we RECEIVED something, use the max formula: clock = max(clock, receive_clock) + 1
 
+We decided that if something is in the queue, the machine forgoes its iternal action to properly respond.
+This was so we could better capture drift from slower clock speeds constantly trying to keep up with faster ones.
+
 UNIT TESTING:
 - VM can send message to 1 machine
 - VM can send messages to both machines
 - When received message, clock updates correctly (max function)
 - When internal message, clock updates correctly (+1)
 
-Ok, adding all log statements with eventypes and we should be done.
+Ok, adding all log statements with event types and we should be done.
 Next, we can document our results. We've also added a config file for detailing ports, host, and time to run.
 
 RESULTS: We run our scale model five times for a minute each (logs stored under log_hist directory). 
@@ -43,33 +51,101 @@ We then have a brief program that extracts clock information from each of the lo
 and analyzes the clock information. We report below, for each run, the (randomly generated)
 clock rates for each machine (higher numbers indicate more ticks per real world second),
 along with the final logical clock time and the average change in the logical clock value
-between logged events. 
+between logged events (which we call "average step size"). 
 
 Run 1:
 Clock rates: [3, 4, 1]
 Final logical clock time: [236, 236, 184]
-Average step sizes: [1.33, 1.0, 3.1]
+Jump time: [1.33, 1.0, 3.1]
 
 Run 2:
 Clock rates: [5, 3, 6]
 Final logical clock time: [351, 349, 351]
-Average step sizes: [1.19, 1.97, 1.0]
+Jump time: [1.19, 1.97, 1.0]
 
 Run 3:
 Clock rates: [1, 3, 4]
 Final logical clock time: [163, 233, 236]
-Average step sizes: [2.75, 1.31, 1.0]
+Jump time: [2.75, 1.31, 1.0]
 
 Run 4:
 Clock rates: [5, 3, 2]
 Final logical clock time: [294, 291, 286]
-Average step sizes: [1.0, 1.64, 2.42]
+Jump time: [1.0, 1.64, 2.42]
 
 Run 5:
 Clock rates: [6, 2, 4]
 Final logical clock time: [351, 334, 348]
-Average step sizes: [1.0, 2.82, 1.48]
+Jump time: [1.0, 2.82, 1.48]
 
-We notice two primary patterns:
-(1) Faster clock rates correspond to larger final logical clock values. This makes sense
-because faster clock rates correspond to more actions taken
+Run (lower clock speed variability):
+Clock rates: [1, 2, 1]
+Final logical clock time: [118, 120, 113]
+Jump time: [1.98, 1.0, 1.9]
+
+Run (lower internal chance):
+Clock rates: [1, 4, 6]
+Final logical clock time: [110, 351, 352]
+Jump time: [1.85, 1.48, 1.0]
+
+Run (higher internal chance):
+Clock rates: [2, 4, 6]
+Final logical clock time: [352, 352, 352]
+Jump time: [1.0, 2.95, 1.49]
+
+We notice a few primary patterns:
+(1) Virtual machines with a slower clock rate have greater terminating drift time
+(i.e., there is a larger gap between logical clock and wall clock at the end, and 
+the final logical clock time is greater). This can be attributed to two primary effects. 
+The first (and less significant) effect is due to the increased rate of actions: 
+virtual machines with faster clock rates simply execute more actions, 
+so it is possible that a few more actions are executed by one machine between 
+another machine's last action and the end of the one minute interval. 
+However, this effect should not be too pronounced because the number of such actions is highly 
+limited because the interval between actions is fairly short.
+
+This limited effect doesn't explain some of the extremely large terminating drift times: 
+for instance, in run 3, the final logical clock value of machine 1 is smaller than that of 
+machine 2 by almost 100. However, when we analyze the contents of the log file, we see that this 
+difference is in large part due to processing speed. Since only one incoming message (which is placed 
+in the queue) can be processed during each tick and the the logical clock is only updated as incoming 
+messages are processed (since other actions don't occur when there are messages in the inbound
+queue), machine 1 effectively falls "behind" on updating its logical clock. In short, the 
+number of inbound messages overwhelms the processing speed of this slower machine, which leads
+to the observed gap in logical clock times.
+
+However, besides the issue of slowly processing messages (if messages are important, we would
+not like them to be in the inbound queue for so long), this gap isn't a logical issue, since
+no other internal actions or outbound messages are sent until all inbound messages are
+processed (at which point the logical clocks would be more synchronized).
+
+(2) Virtual machines with a slower clock rate have higher jump times. 
+This can be attributed to the fact that virtual machines wih higher clock rates simply do
+things more quickly. Between ticks of a slower virtual machine, a faster virtual machine may
+perform several internal actions and may send/receive messages with a similarly faster
+virtual machine. Therefore, while the difference in logged logical clock times between each of
+these events on the faster machine may only be one or two, the slower machine might just
+process a single message during this time span, making the gap between its last logged action
+and this one much greater.
+
+(3) When we lower the clock speed variability (from a random integer between 1 and 6 to a 
+random integer between 1 and 2), we notice that the final logical clock times are much
+closer together (i.e., differences in terminating drift time are much smaller). This makes
+sense because the issues discussed in (1) are largely eliminated. Because clock speeds are
+closer together, it's even less likely that a significant number of events are completed
+between one machine's last action and another (and this, recall, was already the smaller
+effect). Additionally, because clock speeds are closer together, we're less likely to run
+into the issue where one machine is overwhelmed by messages from another machine, which
+thus decreases the occurences of large differences in terminating drift time.
+
+(4) We might expect at first that lowering the probability of internal events per tick
+should lead to increased differences in terminating drift time because more messages
+will be sent, making it more likely that one machine is overwhelmed by the messages
+of another. However, when we lower the probability of internal events per tick 
+(from 7/10 to 1/4), we don't actually notice that big of a difference in the terminating
+drift time. When we look at the queue size, it has increased close to a magnitude of 10.
+
+On the other hand, if we increase the probability of internal events per tick
+(from 7/10 to 97/100), differences in the terminating drift time essentially disappear.
+This is largely because the number of messages significantly decreases, which largely  
+eliminates the issue of backed up queues.

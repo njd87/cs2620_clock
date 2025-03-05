@@ -15,6 +15,8 @@ port1 = config['port1']
 port2 = config['port2']
 port3 = config['port3']
 run_duration = config['run_duration']
+max_internal = config['max_internal']
+max_clock_speed = config['max_clock_speed']
 
 class VirtualMachine:
     def __init__(self, machine_id, port, peers):
@@ -39,7 +41,7 @@ class VirtualMachine:
         self.peer_sockets = {}
 
         # get random clock
-        self.clock_speed = random.randint(1, 6)
+        self.clock_speed = random.randint(1, max_clock_speed)
 
         # initialize clock and queue
         self.logical_clock = 0
@@ -48,6 +50,8 @@ class VirtualMachine:
         # create log file
         self.log_file = f"logs/machine_{self.machine_id}_log.txt"
         with open(self.log_file, "w") as f:
+            f.write(f"Max internal event={max_internal}\n")
+            f.write(f"Max clock speed={max_clock_speed}\n")
             f.write(f"Machine {self.machine_id} initialized. Clock rate={self.clock_speed}\n")
 
         # set up socket
@@ -165,6 +169,7 @@ class VirtualMachine:
         ----------
         force_test : int
             If an int is provided, it runs the main loop once for that integer then exits.
+            ONLY USED FOR UNIT TESTING
         """
         while True:
             sleep_time = 1.0 / self.clock_speed
@@ -184,7 +189,7 @@ class VirtualMachine:
                 )
             else:
                 # if nothing in inbound queue, random action
-                choice = random.randint(1, 10)
+                choice = random.randint(1, max_internal)
                 if force_test:
                     choice = force_test
                 if choice == 1:

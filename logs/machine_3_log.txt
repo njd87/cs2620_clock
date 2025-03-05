@@ -1,4 +1,0 @@
-Machine 3 initialized. Clock rate=6
-[INTERNAL] SystemTime=1740954538.5441, LogicalClock=1, Info=old_clock=0
-[RECEIVE] SystemTime=1740954539.0475, LogicalClock=4, Info=From=1, SenderClock=3, QueueSizeAfter=0, OldLocalClock=1
-[RECEIVE] SystemTime=1740954539.5537, LogicalClock=8, Info=From=1, SenderClock=7, QueueSizeAfter=0, OldLocalClock=4

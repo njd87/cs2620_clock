@@ -3,5 +3,7 @@
     "port1": 8000,
     "port2": 8001,
     "port3": 8002,
-    "run_duration": 60
+    "run_duration": 60,
+    "max_internal": 100,
+    "max_clock_speed": 6
 }
