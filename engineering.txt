@@ -8,7 +8,7 @@ Starting work today on the logical clocks. Before we begin, we have an outline o
 
 1) Each vm will be an object of a VirtualMachine class that keeps track of the other clocks
     Also useful since we can set clock speed at the beginning!
-2) Listening sockets need to be run within each vm for each socket This is a bit tough
+2) Listening sockets need to be run within each vm for each socket. This is a bit tough
 since we also do not have a main "server," but rather computers talking to each other over distinct sockets (maybe using one socket per listening?)
 3) When clock speed is chosen, we need to sleep for time/clock seconds for each event.
 4) From what we have decided, vector clocks are NOT mentioned. So, internal events update clock by 1 and when it receives another clock's time,
@@ -20,6 +20,8 @@ Created the class and passed all info. Issue is getting sockets to connect to ea
 Ok, so it looks like we need to run all the "setup_connection" in a seperate thread to make sure
 the new connection can keep listening. These create sockets looking for connection then immediately puts the socket through to
 handling requests that listens and adds to the vm's queue.
+
+Now, we need a function outside of main to run each vm in its own processes (we can run threads in processes).
 
 Another issue (that took way to long to fix) is that we can't create the connections before creating the other machines
 (something so obvious now, but it is what it is).

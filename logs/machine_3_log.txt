@@ -1,64 +1,121 @@
 Max internal event=10
 Max clock speed=2
-Machine 3 initialized. Clock rate=1
-[INTERNAL] SystemTime=1741205113.3298, LogicalClock=1, Info=old_clock=0
-[SEND] SystemTime=1741205114.3305, LogicalClock=2, Info=To=2
-[RECEIVE] SystemTime=1741205115.3358, LogicalClock=3, Info=From=1, SenderClock=2, QueueSizeAfter=0, OldLocalClock=2
-[INTERNAL] SystemTime=1741205116.3411, LogicalClock=4, Info=old_clock=3
-[INTERNAL] SystemTime=1741205117.3465, LogicalClock=5, Info=old_clock=4
-[RECEIVE] SystemTime=1741205118.3501, LogicalClock=9, Info=From=1, SenderClock=8, QueueSizeAfter=0, OldLocalClock=5
-[SEND] SystemTime=1741205119.3522, LogicalClock=10, Info=To=1
-[INTERNAL] SystemTime=1741205120.3578, LogicalClock=11, Info=old_clock=10
-[RECEIVE] SystemTime=1741205121.3648, LogicalClock=12, Info=From=2, SenderClock=9, QueueSizeAfter=1, OldLocalClock=11
-[RECEIVE] SystemTime=1741205122.3667, LogicalClock=15, Info=From=1, SenderClock=14, QueueSizeAfter=0, OldLocalClock=12
-[SEND] SystemTime=1741205123.3689, LogicalClock=16, Info=To=1
-[SEND] SystemTime=1741205124.3725, LogicalClock=17, Info=To=2
-[SEND] SystemTime=1741205125.3761, LogicalClock=18, Info=To=1
-[SEND] SystemTime=1741205126.3814, LogicalClock=19, Info=Broadcast to peers [1, 2]
-[SEND] SystemTime=1741205127.3864, LogicalClock=20, Info=To=1
-[RECEIVE] SystemTime=1741205128.3910, LogicalClock=30, Info=From=1, SenderClock=29, QueueSizeAfter=0, OldLocalClock=20
-[RECEIVE] SystemTime=1741205129.3956, LogicalClock=32, Info=From=1, SenderClock=31, QueueSizeAfter=0, OldLocalClock=30
-[RECEIVE] SystemTime=1741205130.3971, LogicalClock=33, Info=From=1, SenderClock=32, QueueSizeAfter=0, OldLocalClock=32
-[RECEIVE] SystemTime=1741205131.4019, LogicalClock=35, Info=From=1, SenderClock=34, QueueSizeAfter=0, OldLocalClock=33
-[INTERNAL] SystemTime=1741205132.4036, LogicalClock=36, Info=old_clock=35
-[SEND] SystemTime=1741205133.4089, LogicalClock=37, Info=Broadcast to peers [1, 2]
-[INTERNAL] SystemTime=1741205134.4137, LogicalClock=38, Info=old_clock=37
-[RECEIVE] SystemTime=1741205135.4184, LogicalClock=44, Info=From=1, SenderClock=43, QueueSizeAfter=0, OldLocalClock=38
-[RECEIVE] SystemTime=1741205136.4235, LogicalClock=46, Info=From=1, SenderClock=45, QueueSizeAfter=1, OldLocalClock=44
-[RECEIVE] SystemTime=1741205137.4270, LogicalClock=47, Info=From=2, SenderClock=44, QueueSizeAfter=1, OldLocalClock=46
-[RECEIVE] SystemTime=1741205138.4321, LogicalClock=48, Info=From=1, SenderClock=47, QueueSizeAfter=0, OldLocalClock=47
-[INTERNAL] SystemTime=1741205139.4341, LogicalClock=49, Info=old_clock=48
-[RECEIVE] SystemTime=1741205140.4391, LogicalClock=54, Info=From=1, SenderClock=53, QueueSizeAfter=0, OldLocalClock=49
-[RECEIVE] SystemTime=1741205141.4425, LogicalClock=56, Info=From=1, SenderClock=55, QueueSizeAfter=0, OldLocalClock=54
-[RECEIVE] SystemTime=1741205142.4472, LogicalClock=57, Info=From=1, SenderClock=56, QueueSizeAfter=0, OldLocalClock=56
-[RECEIVE] SystemTime=1741205143.4516, LogicalClock=60, Info=From=1, SenderClock=59, QueueSizeAfter=0, OldLocalClock=57
-[INTERNAL] SystemTime=1741205144.4557, LogicalClock=61, Info=old_clock=60
-[RECEIVE] SystemTime=1741205145.4609, LogicalClock=64, Info=From=1, SenderClock=63, QueueSizeAfter=0, OldLocalClock=61
-[RECEIVE] SystemTime=1741205146.4665, LogicalClock=65, Info=From=1, SenderClock=64, QueueSizeAfter=1, OldLocalClock=64
-[RECEIVE] SystemTime=1741205147.4737, LogicalClock=66, Info=From=1, SenderClock=65, QueueSizeAfter=0, OldLocalClock=65
-[INTERNAL] SystemTime=1741205148.4784, LogicalClock=67, Info=old_clock=66
-[RECEIVE] SystemTime=1741205149.4813, LogicalClock=72, Info=From=1, SenderClock=71, QueueSizeAfter=0, OldLocalClock=67
-[INTERNAL] SystemTime=1741205150.4866, LogicalClock=73, Info=old_clock=72
-[SEND] SystemTime=1741205151.4910, LogicalClock=74, Info=To=1
-[INTERNAL] SystemTime=1741205152.4951, LogicalClock=75, Info=old_clock=74
-[INTERNAL] SystemTime=1741205153.4983, LogicalClock=76, Info=old_clock=75
-[RECEIVE] SystemTime=1741205154.5025, LogicalClock=81, Info=From=1, SenderClock=80, QueueSizeAfter=0, OldLocalClock=76
-[RECEIVE] SystemTime=1741205155.5054, LogicalClock=84, Info=From=1, SenderClock=83, QueueSizeAfter=0, OldLocalClock=81
-[RECEIVE] SystemTime=1741205156.5106, LogicalClock=85, Info=From=1, SenderClock=84, QueueSizeAfter=0, OldLocalClock=84
-[INTERNAL] SystemTime=1741205157.5124, LogicalClock=86, Info=old_clock=85
-[RECEIVE] SystemTime=1741205158.5141, LogicalClock=90, Info=From=1, SenderClock=89, QueueSizeAfter=1, OldLocalClock=86
-[RECEIVE] SystemTime=1741205159.5174, LogicalClock=91, Info=From=2, SenderClock=86, QueueSizeAfter=1, OldLocalClock=90
-[RECEIVE] SystemTime=1741205160.5216, LogicalClock=92, Info=From=1, SenderClock=90, QueueSizeAfter=0, OldLocalClock=91
-[SEND] SystemTime=1741205161.5246, LogicalClock=93, Info=Broadcast to peers [1, 2]
-[INTERNAL] SystemTime=1741205162.5256, LogicalClock=94, Info=old_clock=93
-[INTERNAL] SystemTime=1741205163.5296, LogicalClock=95, Info=old_clock=94
-[INTERNAL] SystemTime=1741205164.5347, LogicalClock=96, Info=old_clock=95
-[SEND] SystemTime=1741205165.5384, LogicalClock=97, Info=To=1
-[RECEIVE] SystemTime=1741205166.5401, LogicalClock=104, Info=From=2, SenderClock=103, QueueSizeAfter=0, OldLocalClock=97
-[SEND] SystemTime=1741205167.5431, LogicalClock=105, Info=To=2
-[INTERNAL] SystemTime=1741205168.5438, LogicalClock=106, Info=old_clock=105
-[SEND] SystemTime=1741205169.5491, LogicalClock=107, Info=To=1
-[RECEIVE] SystemTime=1741205170.5527, LogicalClock=108, Info=From=2, SenderClock=107, QueueSizeAfter=0, OldLocalClock=107
-[INTERNAL] SystemTime=1741205171.5570, LogicalClock=109, Info=old_clock=108
-[INTERNAL] SystemTime=1741205172.5580, LogicalClock=110, Info=old_clock=109
-[RECEIVE] SystemTime=1741205173.5630, LogicalClock=120, Info=From=1, SenderClock=119, QueueSizeAfter=0, OldLocalClock=110
+Machine 3 initialized. Clock rate=2
+[RECEIVE] SystemTime=1741208054.6119, LogicalClock=1, Info=From=2, SenderClock=0, QueueSizeAfter=0, OldLocalClock=0
+[INTERNAL] SystemTime=1741208055.1164, LogicalClock=2, Info=old_clock=1
+[SEND] SystemTime=1741208055.6186, LogicalClock=3, Info=To=2
+[SEND] SystemTime=1741208056.1241, LogicalClock=4, Info=To=2
+[SEND] SystemTime=1741208056.6296, LogicalClock=5, Info=To=1
+[INTERNAL] SystemTime=1741208057.1348, LogicalClock=6, Info=old_clock=5
+[SEND] SystemTime=1741208057.6382, LogicalClock=7, Info=To=1
+[INTERNAL] SystemTime=1741208058.1413, LogicalClock=8, Info=old_clock=7
+[RECEIVE] SystemTime=1741208058.6443, LogicalClock=9, Info=From=1, SenderClock=7, QueueSizeAfter=0, OldLocalClock=8
+[INTERNAL] SystemTime=1741208059.1481, LogicalClock=10, Info=old_clock=9
+[SEND] SystemTime=1741208059.6519, LogicalClock=11, Info=Broadcast to peers [1, 2]
+[SEND] SystemTime=1741208060.1534, LogicalClock=12, Info=To=2
+[INTERNAL] SystemTime=1741208060.6587, LogicalClock=13, Info=old_clock=12
+[INTERNAL] SystemTime=1741208061.1639, LogicalClock=14, Info=old_clock=13
+[RECEIVE] SystemTime=1741208061.6690, LogicalClock=15, Info=From=1, SenderClock=13, QueueSizeAfter=1, OldLocalClock=14
+[RECEIVE] SystemTime=1741208062.1721, LogicalClock=16, Info=From=1, SenderClock=14, QueueSizeAfter=0, OldLocalClock=15
+[INTERNAL] SystemTime=1741208062.6773, LogicalClock=17, Info=old_clock=16
+[INTERNAL] SystemTime=1741208063.1825, LogicalClock=18, Info=old_clock=17
+[INTERNAL] SystemTime=1741208063.6831, LogicalClock=19, Info=old_clock=18
+[SEND] SystemTime=1741208064.1867, LogicalClock=20, Info=To=1
+[INTERNAL] SystemTime=1741208064.6884, LogicalClock=21, Info=old_clock=20
+[INTERNAL] SystemTime=1741208065.1933, LogicalClock=22, Info=old_clock=21
+[RECEIVE] SystemTime=1741208065.6987, LogicalClock=23, Info=From=1, SenderClock=21, QueueSizeAfter=0, OldLocalClock=22
+[INTERNAL] SystemTime=1741208066.2027, LogicalClock=24, Info=old_clock=23
+[INTERNAL] SystemTime=1741208066.7051, LogicalClock=25, Info=old_clock=24
+[SEND] SystemTime=1741208067.2085, LogicalClock=26, Info=Broadcast to peers [1, 2]
+[INTERNAL] SystemTime=1741208067.7138, LogicalClock=27, Info=old_clock=26
+[INTERNAL] SystemTime=1741208068.2173, LogicalClock=28, Info=old_clock=27
+[SEND] SystemTime=1741208068.7221, LogicalClock=29, Info=To=1
+[INTERNAL] SystemTime=1741208069.2287, LogicalClock=30, Info=old_clock=29
+[RECEIVE] SystemTime=1741208069.7340, LogicalClock=31, Info=From=1, SenderClock=30, QueueSizeAfter=0, OldLocalClock=30
+[SEND] SystemTime=1741208070.2392, LogicalClock=32, Info=To=1
+[INTERNAL] SystemTime=1741208070.7445, LogicalClock=33, Info=old_clock=32
+[RECEIVE] SystemTime=1741208071.2496, LogicalClock=34, Info=From=1, SenderClock=33, QueueSizeAfter=0, OldLocalClock=33
+[INTERNAL] SystemTime=1741208071.7548, LogicalClock=35, Info=old_clock=34
+[INTERNAL] SystemTime=1741208072.2566, LogicalClock=36, Info=old_clock=35
+[INTERNAL] SystemTime=1741208072.7602, LogicalClock=37, Info=old_clock=36
+[INTERNAL] SystemTime=1741208073.2631, LogicalClock=38, Info=old_clock=37
+[RECEIVE] SystemTime=1741208073.7640, LogicalClock=39, Info=From=1, SenderClock=38, QueueSizeAfter=0, OldLocalClock=38
+[SEND] SystemTime=1741208074.2693, LogicalClock=40, Info=Broadcast to peers [1, 2]
+[INTERNAL] SystemTime=1741208074.7706, LogicalClock=41, Info=old_clock=40
+[INTERNAL] SystemTime=1741208075.2737, LogicalClock=42, Info=old_clock=41
+[RECEIVE] SystemTime=1741208075.7782, LogicalClock=43, Info=From=1, SenderClock=41, QueueSizeAfter=0, OldLocalClock=42
+[INTERNAL] SystemTime=1741208076.2834, LogicalClock=44, Info=old_clock=43
+[SEND] SystemTime=1741208076.7887, LogicalClock=45, Info=To=2
+[SEND] SystemTime=1741208077.2907, LogicalClock=46, Info=Broadcast to peers [1, 2]
+[INTERNAL] SystemTime=1741208077.7914, LogicalClock=47, Info=old_clock=46
+[INTERNAL] SystemTime=1741208078.2920, LogicalClock=48, Info=old_clock=47
+[INTERNAL] SystemTime=1741208078.7934, LogicalClock=49, Info=old_clock=48
+[RECEIVE] SystemTime=1741208079.2972, LogicalClock=50, Info=From=1, SenderClock=48, QueueSizeAfter=0, OldLocalClock=49
+[INTERNAL] SystemTime=1741208079.7980, LogicalClock=51, Info=old_clock=50
+[SEND] SystemTime=1741208080.3006, LogicalClock=52, Info=To=2
+[RECEIVE] SystemTime=1741208080.8060, LogicalClock=53, Info=From=1, SenderClock=51, QueueSizeAfter=0, OldLocalClock=52
+[SEND] SystemTime=1741208081.3092, LogicalClock=54, Info=To=1
+[SEND] SystemTime=1741208081.8148, LogicalClock=55, Info=Broadcast to peers [1, 2]
+[INTERNAL] SystemTime=1741208082.3201, LogicalClock=56, Info=old_clock=55
+[INTERNAL] SystemTime=1741208082.8255, LogicalClock=57, Info=old_clock=56
+[INTERNAL] SystemTime=1741208083.3296, LogicalClock=58, Info=old_clock=57
+[RECEIVE] SystemTime=1741208083.8338, LogicalClock=59, Info=From=1, SenderClock=57, QueueSizeAfter=0, OldLocalClock=58
+[RECEIVE] SystemTime=1741208084.3391, LogicalClock=60, Info=From=1, SenderClock=58, QueueSizeAfter=0, OldLocalClock=59
+[RECEIVE] SystemTime=1741208084.8429, LogicalClock=61, Info=From=1, SenderClock=59, QueueSizeAfter=0, OldLocalClock=60
+[SEND] SystemTime=1741208085.3487, LogicalClock=62, Info=Broadcast to peers [1, 2]
+[SEND] SystemTime=1741208085.8541, LogicalClock=63, Info=Broadcast to peers [1, 2]
+[INTERNAL] SystemTime=1741208086.3596, LogicalClock=64, Info=old_clock=63
+[SEND] SystemTime=1741208086.8655, LogicalClock=65, Info=To=2
+[SEND] SystemTime=1741208087.3708, LogicalClock=66, Info=To=2
+[SEND] SystemTime=1741208087.8754, LogicalClock=67, Info=Broadcast to peers [1, 2]
+[INTERNAL] SystemTime=1741208088.3807, LogicalClock=68, Info=old_clock=67
+[INTERNAL] SystemTime=1741208088.8818, LogicalClock=69, Info=old_clock=68
+[INTERNAL] SystemTime=1741208089.3871, LogicalClock=70, Info=old_clock=69
+[INTERNAL] SystemTime=1741208089.8923, LogicalClock=71, Info=old_clock=70
+[INTERNAL] SystemTime=1741208090.3946, LogicalClock=72, Info=old_clock=71
+[RECEIVE] SystemTime=1741208090.8990, LogicalClock=73, Info=From=1, SenderClock=71, QueueSizeAfter=0, OldLocalClock=72
+[INTERNAL] SystemTime=1741208091.3998, LogicalClock=74, Info=old_clock=73
+[SEND] SystemTime=1741208091.9024, LogicalClock=75, Info=To=1
+[INTERNAL] SystemTime=1741208092.4077, LogicalClock=76, Info=old_clock=75
+[INTERNAL] SystemTime=1741208092.9129, LogicalClock=77, Info=old_clock=76
+[INTERNAL] SystemTime=1741208093.4161, LogicalClock=78, Info=old_clock=77
+[RECEIVE] SystemTime=1741208093.9214, LogicalClock=79, Info=From=1, SenderClock=77, QueueSizeAfter=0, OldLocalClock=78
+[SEND] SystemTime=1741208094.4254, LogicalClock=80, Info=To=2
+[RECEIVE] SystemTime=1741208094.9307, LogicalClock=81, Info=From=1, SenderClock=79, QueueSizeAfter=0, OldLocalClock=80
+[SEND] SystemTime=1741208095.4337, LogicalClock=82, Info=Broadcast to peers [1, 2]
+[INTERNAL] SystemTime=1741208095.9382, LogicalClock=83, Info=old_clock=82
+[INTERNAL] SystemTime=1741208096.4435, LogicalClock=84, Info=old_clock=83
+[SEND] SystemTime=1741208096.9471, LogicalClock=85, Info=Broadcast to peers [1, 2]
+[SEND] SystemTime=1741208097.4524, LogicalClock=86, Info=To=1
+[INTERNAL] SystemTime=1741208097.9577, LogicalClock=87, Info=old_clock=86
+[RECEIVE] SystemTime=1741208098.4630, LogicalClock=88, Info=From=1, SenderClock=86, QueueSizeAfter=0, OldLocalClock=87
+[INTERNAL] SystemTime=1741208098.9674, LogicalClock=89, Info=old_clock=88
+[INTERNAL] SystemTime=1741208099.4702, LogicalClock=90, Info=old_clock=89
+[INTERNAL] SystemTime=1741208099.9755, LogicalClock=91, Info=old_clock=90
+[RECEIVE] SystemTime=1741208100.4790, LogicalClock=92, Info=From=1, SenderClock=90, QueueSizeAfter=0, OldLocalClock=91
+[RECEIVE] SystemTime=1741208100.9843, LogicalClock=93, Info=From=1, SenderClock=91, QueueSizeAfter=0, OldLocalClock=92
+[RECEIVE] SystemTime=1741208101.4872, LogicalClock=94, Info=From=1, SenderClock=92, QueueSizeAfter=0, OldLocalClock=93
+[RECEIVE] SystemTime=1741208101.9925, LogicalClock=95, Info=From=1, SenderClock=93, QueueSizeAfter=1, OldLocalClock=94
+[RECEIVE] SystemTime=1741208102.4926, LogicalClock=96, Info=From=2, SenderClock=91, QueueSizeAfter=0, OldLocalClock=95
+[RECEIVE] SystemTime=1741208102.9980, LogicalClock=97, Info=From=1, SenderClock=95, QueueSizeAfter=0, OldLocalClock=96
+[INTERNAL] SystemTime=1741208103.5032, LogicalClock=98, Info=old_clock=97
+[INTERNAL] SystemTime=1741208104.0065, LogicalClock=99, Info=old_clock=98
+[INTERNAL] SystemTime=1741208104.5079, LogicalClock=100, Info=old_clock=99
+[INTERNAL] SystemTime=1741208105.0112, LogicalClock=101, Info=old_clock=100
+[INTERNAL] SystemTime=1741208105.5148, LogicalClock=102, Info=old_clock=101
+[RECEIVE] SystemTime=1741208106.0171, LogicalClock=103, Info=From=2, SenderClock=98, QueueSizeAfter=1, OldLocalClock=102
+[RECEIVE] SystemTime=1741208106.5178, LogicalClock=104, Info=From=1, SenderClock=102, QueueSizeAfter=0, OldLocalClock=103
+[SEND] SystemTime=1741208107.0231, LogicalClock=105, Info=To=2
+[SEND] SystemTime=1741208107.5261, LogicalClock=106, Info=Broadcast to peers [1, 2]
+[INTERNAL] SystemTime=1741208108.0296, LogicalClock=107, Info=old_clock=106
+[RECEIVE] SystemTime=1741208108.5349, LogicalClock=108, Info=From=1, SenderClock=107, QueueSizeAfter=0, OldLocalClock=107
+[INTERNAL] SystemTime=1741208109.0394, LogicalClock=109, Info=old_clock=108
+[INTERNAL] SystemTime=1741208109.5409, LogicalClock=110, Info=old_clock=109
+[SEND] SystemTime=1741208110.0463, LogicalClock=111, Info=To=2
+[INTERNAL] SystemTime=1741208110.5516, LogicalClock=112, Info=old_clock=111
+[RECEIVE] SystemTime=1741208111.0562, LogicalClock=113, Info=From=1, SenderClock=111, QueueSizeAfter=0, OldLocalClock=112
+[INTERNAL] SystemTime=1741208111.5617, LogicalClock=114, Info=old_clock=113
+[INTERNAL] SystemTime=1741208112.0672, LogicalClock=115, Info=old_clock=114
+[INTERNAL] SystemTime=1741208112.5724, LogicalClock=116, Info=old_clock=115
+[RECEIVE] SystemTime=1741208113.0776, LogicalClock=117, Info=From=2, SenderClock=112, QueueSizeAfter=0, OldLocalClock=116
+[INTERNAL] SystemTime=1741208113.5799, LogicalClock=118, Info=old_clock=117
