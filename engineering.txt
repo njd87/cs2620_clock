@@ -53,6 +53,7 @@ clock rates for each machine (higher numbers indicate more ticks per real world 
 along with the final logical clock time and the average change in the logical clock value
 between logged events (which we call "average step size"). 
 
+NORMAL RUNS:
 Run 1:
 Clock rates: [3, 4, 1]
 Final logical clock time: [236, 236, 184]
@@ -78,20 +79,83 @@ Clock rates: [6, 2, 4]
 Final logical clock time: [351, 334, 348]
 Jump time: [1.0, 2.82, 1.48]
 
-Run (lower clock speed variability):
+LOWER CLOCK SPEED VARIABILITY:
+Run 1:
 Clock rates: [1, 2, 1]
-Final logical clock time: [118, 120, 113]
-Jump time: [1.98, 1.0, 1.9]
+Max clocks: [118, 120, 113]
+Average step sizes: [1.98, 1.0, 1.9]
 
-Run (lower internal chance):
+Run 2:
+Clock rates: [2, 1, 1]
+Max clocks: [119, 118, 117]
+Average step sizes: [1.0, 1.98, 1.97]
+
+Run 3:
+Clock rates: [2, 1, 2]
+Max clocks: [119, 115, 119]
+Average step sizes: [1.0, 1.93, 1.0]
+
+Run 4:
+Clock rates: [2, 1, 2]
+Max clocks: [119, 116, 119]
+Average step sizes: [1.0, 1.95, 1.0]
+
+Run 5:
+Clock rates: [2, 2, 2]
+Max clocks: [119, 119, 119]
+Average step sizes: [1.0, 1.0, 1.0]
+
+LOWER INTERNAL CHANCE:
+Run 1:
 Clock rates: [1, 4, 6]
-Final logical clock time: [110, 351, 352]
-Jump time: [1.85, 1.48, 1.0]
+Max clocks: [110, 351, 352]
+Average step sizes: [1.85, 1.48, 1.0]
 
-Run (higher internal chance):
-Clock rates: [2, 4, 6]
-Final logical clock time: [352, 352, 352]
-Jump time: [1.0, 2.95, 1.49]
+Run 2:
+Clock rates: [5, 2, 6]
+Max clocks: [349, 196, 351]
+Average step sizes: [1.19, 1.65, 1.0]
+
+Run 3:
+Clock rates: [3, 6, 3]
+Max clocks: [330, 351, 348]
+Average step sizes: [1.86, 1.0, 1.96]
+
+Run 4:
+Clock rates: [4, 1, 3]
+Max clocks: [236, 105, 236]
+Average step sizes: [1.0, 1.76, 1.33]
+
+Run 5:
+Clock rates: [2, 1, 5]
+Max clocks: [220, 121, 294]
+Average step sizes: [1.86, 2.03, 1.0]
+
+HIGHER INTERNAL CHANCE:
+Run 1:
+Clock rates: [6, 2, 4]
+Max clocks: [352, 352, 352]
+Average step sizes: [1.0, 2.95, 1.49]
+
+Run 2:
+Clock rates: [1, 2, 3]
+Max clocks: [166, 171, 178]
+Average step sizes: [2.8, 1.44, 1.0]
+
+Run 3:
+Clock rates: [5, 6, 5]
+Max clocks: [346, 351, 347]
+Average step sizes: [1.18, 1.0, 1.18]
+
+Run 4:
+Clock rates: [1, 2, 2]
+Max clocks: [115, 119, 119]
+Average step sizes: [1.93, 1.0, 1.0]
+
+Run 5:
+Clock rates: [1, 6, 1]
+Max clocks: [335, 351, 330]
+Average step sizes: [5.66, 1.0, 5.58]
 
 We notice a few primary patterns:
 (1) Virtual machines with a slower clock rate have greater terminating drift time
@@ -138,14 +202,25 @@ effect). Additionally, because clock speeds are closer together, we're less like
 into the issue where one machine is overwhelmed by messages from another machine, which
 thus decreases the occurences of large differences in terminating drift time.
 
-(4) We might expect at first that lowering the probability of internal events per tick
-should lead to increased differences in terminating drift time because more messages
-will be sent, making it more likely that one machine is overwhelmed by the messages
-of another. However, when we lower the probability of internal events per tick 
-(from 7/10 to 1/4), we don't actually notice that big of a difference in the terminating
-drift time. When we look at the queue size, it has increased close to a magnitude of 10.
+We should also see that the jump times decrease because the issue mentioned
+in (2) is resolved (i.e., the number of actions done by one VM between actions of
+another is reduced).
+
+(4) When we lower the probability of internal events per tick, we see increased differences
+in terminating drift time and decreased jump times. Lowering the probability of internal events
+increases the number of messages / decreases the logical clock gaps between messages. For
+the slower VMs that spend their entire lifetime processing messages, this means that
+the gap between consecutive messages is smaller, so their logical clock updates are smaller.
+At the same time, since the number of messages that the slower VMs can process is about the
+same, it means that the overall difference between the logical clock times contained in the 
+first and last messages processed is smaller, which leads to a larger difference in
+terminating drift time. 
 
 On the other hand, if we increase the probability of internal events per tick
-(from 7/10 to 97/100), differences in the terminating drift time essentially disappear.
-This is largely because the number of messages significantly decreases, which largely  
-eliminates the issue of backed up queues.
+(from 7/10 to 97/100), we see the reverse effect. Differences in the terminating drift time 
+decrease significantly and jump times increase. This is largely because the number of 
+messages significantly decreases, which largely eliminates the issue of backed up queues. 
+However, this effect is also counterbalanced by the fact that there are now less opportunities
+for our VMs to synchronize logical clocks via messages, which can lead to
+(a) large gaps in terminating drift time if there is a large gap between the last message 
+sent between a fast and a slow VM and (b) generally larger jump times.
