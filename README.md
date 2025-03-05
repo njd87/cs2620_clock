@@ -24,3 +24,8 @@ Running will create or append to the 3 log files (if already created) the clock 
 If you would like to change the port, host, or time that the program runs for (defaults are listed in config, run_duration in seconds), change to your desired params in config/config.json.
 
 You may also change the maximum clock rate possible (default 6) and maximum number of events. 1-3 reserved for sending. Param requires minimum of 4, default 10.
+
+# Analysis.ipynb
+
+The analysis file helps to compile data from the logs using regular expression parsing.
+The results of running the analysis (getting average jump times, ending log times, clock speeds) are written up in our engineering notebook.
